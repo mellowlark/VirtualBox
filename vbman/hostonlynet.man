@@ -1,0 +1,63 @@
+Oracle VM VirtualBox Command Line Management Interface Version 7.0.18
+Copyright (C) 2005-2024 Oracle and/or its affiliates
+
+VBoxManage hostonlynet -- Host Only Network management.
+
+Usage
+=====
+
+  VBoxManage hostonlynet add <--name=netname> [--id=netid] <--netmask=mask> <--lower-ip=address> <--upper-ip=address> [--enable | --disable]
+  VBoxManage hostonlynet modify <--name=netname | --id=netid> [--lower-ip=address] [--upper-ip=address] [--netmask=mask] [--enable | --disable]
+  VBoxManage hostonlynet remove <--name=netname | --id=netid>
+
+Description
+===========
+
+  The hostonlynet commands enable you to control host-only networks.
+
+    Common options
+    --------------
+
+    The subcommands of hostonlynet all operate on an host-only network that can be identified via its name or uuid:
+
+    --name=<netname>
+        The host-only network name. You see it as VBoxNetworkName in the output from VBoxManage list hostonlynets.
+
+    --id=<netid>
+        The host-only network uuid. If not specified when adding a new network, one will be generated automatically.
+
+
+    hostonlynet add
+    ---------------
+
+    VBoxManage hostonlynet add <--name=netname> [--id=netid] <--netmask=mask> <--lower-ip=address> <--upper-ip=address> [--enable | --disable]
+
+    Adds a new host-only network.
+
+    Options configuring the host-only network:
+
+    --netmask=<mask>
+        The network mask. Typically 255.255.255.0.
+
+    --lower-ip=<address>, --upper-ip=<address>
+        The IP address range for handing out via DHCP. The upper boundrary is inclusive while the lower one is not, so the upper address will be handed out to a
+        client, while the lower address will be used by the host itself.
+
+    --enable, --disable
+        Whether to enable the host-only network or disable it. If not specified, the network will be created in enabled state.
+
+
+    hostonlynet modify
+    ------------------
+
+    VBoxManage hostonlynet modify <--name=netname | --id=netid> [--lower-ip=address] [--upper-ip=address] [--netmask=mask] [--enable | --disable]
+
+    This modifies an existing host-only network configuration. It takes the same options as the add command.
+
+
+    hostonlynet remove
+    ------------------
+
+    VBoxManage hostonlynet remove <--name=netname | --id=netid>
+
+    Removes the specified host-only network.

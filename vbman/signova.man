@@ -1,0 +1,51 @@
+Oracle VM VirtualBox Command Line Management Interface Version 7.0.18
+Copyright (C) 2005-2024 Oracle and/or its affiliates
+
+VBoxManage signova -- Digitally sign an OVA.
+
+Usage
+=====
+
+  VBoxManage signova <ova> <--certificate=file> <--private-key=file> [--private-key-password-file=password-file | --private-key-password=password]
+      [--digest-type=type] [--pkcs7 | --no-pkcs7] [--intermediate-cert=file] [--force] [--verbose] [--quiet] [--dry-run]
+
+Description
+===========
+
+  The VBoxManage signova command adds a digital signature to an OVA file.
+
+  <ova>
+      The OVA file to sign.
+
+  --certificate=<file>
+      File containing the certificate that the OVA should be signed with. This can either be in PEM format (base64) or DER (binary), the command will detect which.
+
+  --private-key=<file>
+      The file containing the private key. This can either be in PEM (base64) or DER (binary) format, the command will detect which.
+
+  --private-key-password-file=<password-file>
+      File containing the private key password.
+
+  --private-key-password=<password>
+      The private key password.  add warning about visibility
+
+  --digest-type=<type>
+      Select the cryptographic digest algorithm to use in the signing. Possible values: SHA-256 (default), SHA-512 and SHA-1.
+
+      Some older versions of OVFTool and other VMware produces may require --digest-type=sha-1 to accept the OVA.
+
+  --pkcs7, --no-pkcs7
+      Enables or disables the creation of an additional PKCS#7/CMS signature. This is enabled by default.
+
+  --intermediate-cert=<file>
+      File containing an intermediary certificate that should be included in the optional PKCS#7/CMS signature. Like the others, the file can either be in PEM or
+      DER format. This option can be repeated to add multiple intermediate certificates. This option implies the --pkcs7 option.
+
+  --force
+      Overwrite existing signature if present. The default behaviour is to fail if the OVA is already signed.
+
+  --dry-run
+      Do not actually modify the OVA, just test-run the signing operation.
+
+  -v, --verbose, -q, --quiet
+      Controls the verbositity of the command execution. The --verbose option can be used multiple times to get more output.

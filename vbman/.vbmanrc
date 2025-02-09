@@ -1,0 +1,30 @@
+set autoindent expandtab tabstop=2 shiftwidth=2
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" Word Wrap Stuff:
+"=================
+set linebreak
+set breakindent
+"set wrapmargin=8
+" set nowrap
+" set tw=55
+" enable indentation
+" set breakindent
+" ident by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
+" set breakindentopt=shift:2,min:40,sbr
+" append '>>' to indent
+" set showbreak=>>   
+
+" NERDTree stuff
+" ==============
+" Start NERDTree and leave the cursor in opened file.
+autocmd VimEnter * NERDTree ~/vbman |wincmd p
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+"hides ^G characters in the folder explorer column
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
